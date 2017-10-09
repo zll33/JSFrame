@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB" customClass="XHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="549" height="186"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="BIY-fO-Xod">
+                    <rect key="frame" x="20" y="83" width="20" height="20"/>
+                </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVs-Ff-x04">
+                    <rect key="frame" x="0.0" y="25" width="549" height="25"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MxR-yP-3Yo">
+                    <rect key="frame" x="0.0" y="0.0" width="549" height="186"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="JM7-wz-2CU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="JM7-wz-2CU"/>
+                        </mask>
+                    </variation>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="MxR-yP-3Yo" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="3XK-rC-Cxu"/>
+                <constraint firstAttribute="bottom" secondItem="TVs-Ff-x04" secondAttribute="bottom" priority="750" id="7jo-OG-emp"/>
+                <constraint firstItem="MxR-yP-3Yo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AXo-l8-ePA"/>
+                <constraint firstItem="TVs-Ff-x04" firstAttribute="centerX" secondItem="MxR-yP-3Yo" secondAttribute="centerX" id="HkC-Tf-VQJ"/>
+                <constraint firstItem="TVs-Ff-x04" firstAttribute="width" secondItem="MxR-yP-3Yo" secondAttribute="width" id="Llb-2z-XCQ"/>
+                <constraint firstItem="TVs-Ff-x04" firstAttribute="height" secondItem="MxR-yP-3Yo" secondAttribute="height" id="OfP-zy-wRZ"/>
+                <constraint firstItem="MxR-yP-3Yo" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="ZH9-bE-wx0"/>
+                <constraint firstAttribute="centerY" secondItem="BIY-fO-Xod" secondAttribute="centerY" id="dk5-wx-ZWM"/>
+                <constraint firstItem="MxR-yP-3Yo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wAQ-dG-GMO"/>
+                <constraint firstItem="BIY-fO-Xod" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="xxC-Rl-bSK"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="avtivityInView" destination="BIY-fO-Xod" id="oXR-Ij-8FM"/>
+                <outlet property="msg" destination="TVs-Ff-x04" id="TYT-rY-j2g"/>
+                <outlet property="title" destination="MxR-yP-3Yo" id="5ye-6Z-cra"/>
+            </connections>
+            <point key="canvasLocation" x="425.5" y="-112"/>
+        </view>
+    </objects>
+</document>

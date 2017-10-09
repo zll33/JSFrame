@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<script src="xview.js"></script>
+<script src="test_linearlayout.js"></script>
+
+
+<title>测试视图</title>
+<script>
+function resizefun(arr){
+ var dd=2;
+}
+window.onload=function () {
+	var view = new View();
+	view.setBackColor("#ff0000");
+	
+	setAppMainView(view);
+	view.div.style.position="absolute";
+	
+	//居上
+	var ltText = new TextView();
+	ltText.setText("测试一下-----------1234567890-----------ABCDEFGHIJKLMNOPQRSTUVWXYZ-----------测试一下-----------1234567890-----------ABCDEFGHIJKLMNOPQRSTUVWXYZ-----------测试一下",36,0xff00ff00);
+	ltText.setWidth(MatchParent);
+	//ltText.setGravity(GravityLeft);
+	ltText.setBackColor(0xff888888);
+	ltText.setPadding(15,10,15,10);
+	ltText.setMLeft(15);
+	ltText.setMRight(15);
+	ltText.setMTop(25);
+	view.addView(ltText);
+	
+	//剧中
+	var hello = new TextView();
+	hello.setText("hello hello hello hello",36,0xffff0000);
+	hello.setBackColor(0xFF666666);
+	//hello.setGravity(GravityLeft);
+	hello.setLayoutGravity(GravityCenter);
+	hello.setWidth(100);
+	//hello.setHeight(300);//默认适应内容
+	var helloStr="hello";
+	view.addView(hello);
+	
+	//右中
+	var rightView = new View();
+	rightView.setBackColor(0x88ffff00);
+	rightView.setWidth(120);
+	rightView.setHeight(80);
+	rightView.setMRight(15);
+	rightView.setLayoutGravity(GravityRight|GravityCenterV);
+	view.addView(rightView);
+	
+	
+	//底部剧中
+	var bottomView = new View();
+	bottomView.setBackColor(0x8800ffff);
+	bottomView.setWidth(MatchParent);
+	bottomView.setHeight(100);
+	bottomView.setLayoutGravity(GravityBottom|GravityCenterH);
+	view.addView(bottomView);
+	
+	//点击事件
+	view.setOnClick(function(){
+		helloStr+=" hello";
+		hello.setText(helloStr);
+		bottomView.setLayoutGravity(GravityBottom|GravityRight);
+		bottomView.setWidth(100);
+	});
+
+	
+	//左下一个线性布局
+	var lay = createTestLinearLayout();
+	lay.setLayoutGravity(GravityBottom|GravityLeft);
+	lay.setBackColor(0x55000000);
+	lay.setWidth(300);
+	lay.setHeight(300);
+	view.addView(lay);
+	
+	 /*
+	var a = { zhihu:0 };
+
+Object.defineProperty(a, 'zhihu', {
+  get: function() {
+    //console.log('get：' + zhihu);
+    return zhihu;
+  },
+  set: function(value) {
+    zhihu = value;
+    //console.log('set:' + zhihu);
+  }
+});
+
+	a.zhihu=2;
+	*/
+	
+	
+
+
+		  
+ 
+ 
+ ///vertical-align:middle
+ }
+ 
+</script>
+</head>
+<body>
+<div> de </div>
+</body>
+</html>

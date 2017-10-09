@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+
+
+<title>测试视图</title>
+<script>
+function resizefun(arr){
+ var dd=2;
+}
+function loadtest() {
+
+	var app = new App();
+	var form=new Form();
+	var view = new View();
+	form.setContentView(view);
+	app.showForm(form);
+
+	
+	
+	
+	//居上
+	var ltText = new TextView();
+	ltText.setText("测试一下-----------1234567890-----------ABCDEFGHIJKLMNOPQRSTUVWXYZ-----------测试一下-----------1234567890-----------ABCDEFGHIJKLMNOPQRSTUVWXYZ-----------测试一下",36,0xff00ff00);
+	ltText.setWidth(MatchParent);
+	ltText.setGravity(GravityRight);
+	ltText.setBackColor(0xff888888);
+	ltText.setPadding(15,10,15,10);
+	ltText.setMLeft(15);
+	ltText.setMRight(15);
+	ltText.setMTop(25);
+	view.addView(ltText);
+	
+	//剧中
+	var hello = new TextView();
+	hello.setText("hello hello hello hello",36,0xffff0000);
+	hello.setBackColor(0xFF666666);
+	//hello.setGravity(GravityLeft);
+	hello.setLayoutGravity(GravityCenter);
+	hello.setWidth(100);
+	//hello.setHeight(300);//默认适应内容
+	var helloStr="hello";
+	view.addView(hello);
+	
+	//右中
+	var rightView = new View();
+	rightView.setBackColor(0x88ffff00);
+	rightView.setWidth(120);
+	rightView.setHeight(80);
+	rightView.setMRight(15);
+	rightView.setLayoutGravity(GravityRight|GravityCenterV);
+	view.addView(rightView);
+	// 左中的编辑框
+	var editView = new EditView();
+	editView.setBackColor(0x88ffff00);
+	editView.setWidth(120);
+	editView.setHeight(80);
+	editView.setMLeft(15);
+	editView.setGravity(GravityRight|GravityCenterV);
+	editView.setLayoutGravity(GravityLeft|GravityCenterV);
+	editView.setText("qeweqwe");
+	editView.setOnTextChange(function(text){
+		console.log('setOnTextChange :' + text);
+		
+	});
+	 
+	
+	view.addView(editView);
+	
+	//一个相对布局addRule(firstType,relation,toView,toType,multiple,disparity,keepWH)
+	var ruleView = new View();
+	ruleView.setBackColor(0x88ff00ff);
+	ruleView.setWidth(50);
+	ruleView.setHeight(50);
+	ruleView.addRule(Rule.Left,Rule.Equal,hello,Rule.Right,1,0,true);
+	ruleView.addRule(Rule.Top,Rule.Equal,hello,Rule.Top,1,0,true);
+	view.addView(ruleView); 
+	
+	//底部剧中
+	var bottomView = new View();
+	bottomView.setBackColor(0x8800ffff);
+	bottomView.setWidth(MatchParent);
+	bottomView.setHeight(100);
+	bottomView.setLayoutGravity(GravityBottom|GravityCenterH);
+	view.addView(bottomView);
+	
+	ruleView.addRule(Rule.Bottom,Rule.Equal,bottomView,Rule.Top,1,0,false);
+	ruleView.addRule(Rule.Right,Rule.LessThan,rightView,Rule.Left,1,0,false);
+	
+	
+	hello.addRule(Rule.Right,Rule.LessThan,rightView,Rule.Left,1,0,true);
+	
+	//点击事件
+	view.setOnClick(function(){
+		helloStr+=" hello";
+		hello.setText(helloStr);
+		bottomView.setLayoutGravity(GravityBottom|GravityRight);
+		bottomView.setWidth(100);
+		editView.setText("qewe");
+	});
+
+	
+	//左下一个线性布局
+	var lay = createTestLinearLayout();
+	lay.setLayoutGravity(GravityBottom|GravityLeft);
+	lay.setBackColor(0x55000000);
+	lay.setWidth(300);
+	lay.setHeight(300);
+	view.addView(lay);
+	
+	bottomView.addRule(Rule.Left,Rule.LessThan,lay.testView,Rule.Right ,1,0,false);
+	
+	 /*
+	var a = { zhihu:0 };
+
+Object.defineProperty(a, 'zhihu', {
+  get: function() {
+    //console.log('get：' + zhihu);
+    return zhihu;
+  },
+  set: function(value) {
+    zhihu = value;
+    //console.log('set:' + zhihu);
+  }
+});
+
+	a.zhihu=2;
+	*/
+	
+	
+
+
+		  
+ 
+ 
+ ///vertical-align:middle
+ }
+ function createTestLinearLayout(){
+	var lay = new LinearLayout();
+	//lay.setOrientation(Horizontal);
+	lay.setOrientation(Vertical);
+	lay.setGravity(GravityCenter);
+	lay.setPadding(15,10,15,10);
+	//
+	var view1 = new View();
+	view1.setWidth(50);
+	view1.setHeight(50);
+	view1.setBackColor(0xffff0000);
+	lay.addView(view1);
+	//
+	var hlay = new LinearLayout();
+	hlay.setOrientation(Horizontal);
+	hlay.setWidth(MatchParent);
+	hlay.setHeight(40);
+	hlay.setBackColor(0x33000000);
+	lay.addView(hlay);
+	{
+		var viewh1 = new View();
+		viewh1.setHeight(MatchParent);
+		viewh1.setWeight(1);
+		viewh1.setBackColor(0xffFF0000);
+		hlay.addView(viewh1);
+		//
+		var viewh2 = new View();
+		viewh2.setHeight(MatchParent);
+		viewh2.setWeight(1);
+		viewh2.setBackColor(0xff00FF00);
+		hlay.addView(viewh2);
+		//
+		var viewh3 = new View();
+		viewh3.setHeight(MatchParent);
+		viewh3.setWidth(80);
+		viewh3.setBackColor(0xff00FFFF);
+		hlay.addView(viewh3);
+		//
+		lay.testView = viewh2;
+	}
+	//
+	var scrview= new ScrollView();
+	scrview.setBackColor(0xff00ff00);
+	scrview.setWidth(50);
+	scrview.setHeight(80);
+	scrview.setOnScroll(function(sx,sy,state){
+		 
+	});
+	lay.addView(scrview);
+	
+	var view2 = new TextView();
+	view2.setWidth(50);
+	view2.setHeight(WrapContent);
+	
+	//view2.setMTop(10);
+	//view2.setMLeft(10);
+	view2.setText("好地dd地23",36,0xff000000);
+	scrview.setContentView(view2);
+	
+	lay.setOnClick(function(){
+		view2.setText("12好地方地地ewqwer");
+	});
+	
+	var scr = new ScrollView();
+	lay.setWidth(500);
+	scr.testView = lay.testView;
+	scr.setContentView(lay);
+	
+	return scr;
+}
+//window.onload=loadtest;
+//window.onload= MyApp;
+
+</script>
+</head>
+<body>
+<div> de </div>
+</body>
+<script src="baseview.js"></script>
+<script src="my_app.js"></script>
+</html>
