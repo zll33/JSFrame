@@ -77,7 +77,7 @@ function HttpForm(){
 	var paramView = new EditView();
 	paramView.setWeight(1);
 	paramView.setHeight(MatchParent);
-	paramView.setText("{'word':\"张\"}");
+	paramView.setText("{\"word\":\"张\"}");
 	paramView.setGravity(GravityCenterV);
 	lay3.addView(paramView);
 	
@@ -91,10 +91,15 @@ function HttpForm(){
 	sendButton.setMTop(10);
 	this.mainLay.addView(sendButton);
 	sendButton.setOnClick(function(){
+		var data=null;
+		try{
+			data = JSON.parse(paramView.getText());
+		}catch(e){}
 		new Http().request({
 			url:"http://www.zhangxiuquan.com/act/test.php",
 			method:selectMothed,
-			data:paramView.getText(),//{word:"zhang"},//
+			//headers:{"Content-Type":"application/json"},//{"Content-Type":"x-www-form-urlencoded"},//
+			data:data,//{word:paramView.getText(),more:{a:"xia",b:"上"}},//
 			timeout:3000,
 			onResponse:function(headers,state,str){
 				if(state==200){
@@ -119,6 +124,7 @@ function HttpForm(){
 	result.setLineSpace(3);
 	this.mainLay.addView(result);
 
+	
 	
 }
 Extern(HttpForm,Form);

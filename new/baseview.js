@@ -646,7 +646,7 @@ Frame = {
 			this.request.headers[key]=value;
 		};
 		//适配函数
-		http.setBodyString=function(str){
+		http.setData=function(str){
 			this.request.data=str;
 		};
 		//适配函数 onResponse = function(response,statue,json); response = {statue,headers,string}
