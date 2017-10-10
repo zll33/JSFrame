@@ -1,3 +1,55 @@
+function Http(){
+	this.http=Frame.createHttp();
+	
+	return this;
+}
+Http.prototype.request=function(request){
+	this.http.setUrl(request.url);
+	if(request.type||request.method){
+		this.http.setMethod(request.type||request.method);
+	}
+	if(request.headers&&request.headers.length>0){
+		for(var key in request.headers){
+			this.http.setHeader(key,request.headers[key]);
+		}
+	}
+	if(request.data){
+		if(typeof(request.data) == "object"){
+			this.http.setBodyString(JSON.stringify(request.data));
+		}else{
+			this.http.setBodyString(request.data);
+		}
+	}
+	if(request.complete||request.onResponse||request.response){
+		this.http.setOnResponse(request.complete||request.onResponse||request.response);
+	}
+	this.http.doRequest();
+};
+//const
+var KeyValue={
+	save:function(key,value){
+		if(typeof(value)=="object"){
+			value=JSON.stringify(value);
+		}else{
+			value = String(value);
+		}
+		Frame.saveKeyValue(key,value);
+	},
+	getString:function(key){
+		return Frame.getKeyValue(key);
+	},
+	getBoolean:function(key){
+		return Boolean(Frame.getKeyValue(key));
+	},
+	get:function(key){
+		var value =  Frame.getKeyValue(key);
+		if(typeof(value)=="string"&&value.indexOf("{")==0 ){
+			value=JSON.parse(value);
+		}
+		return value;
+	}
+};
+
 function App(){
 	this.rootView=new View()
 	this.rootView.setBackColor(0xffffffff);

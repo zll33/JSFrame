@@ -718,6 +718,7 @@ View = function (vType){
 	if(typeof(vType)=="undefined"){
 		vType = TView;
 	}
+	this.viewType=vType;
 	this.baseView = Frame.createView(vType);//  new BaseView(vType);// document.createElement("div");
 	this.parent=null;
 	this.isOnApp =false;

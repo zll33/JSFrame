@@ -10,6 +10,9 @@ Frame.loadJS("my_app_linearlayout.js");
 Frame.loadJS("my_app_rule.js");
 Frame.loadJS("my_app_scroll.js");
 Frame.loadJS("my_app_listview.js");
+Frame.loadJS("my_app_http.js");
+Frame.loadJS("my_app_keyvalue.js");
+
 Frame.setLoadJSFinish(function(){
 	//检查各文件的版本是否正确
 	
@@ -53,9 +56,9 @@ function MyApp(){
 		//
 		this.mainLay.addView(createButton("ListView",ListViewForm));
 		//
-		this.mainLay.addView(createButton("网络请求"));
+		this.mainLay.addView(createButton("网络请求",HttpForm));
 		//
-		this.mainLay.addView(createButton("数据存储"));
+		this.mainLay.addView(createButton("数据存储",KeyValueForm));
 		//
 		this.mainLay.addView(createButton("页面跳转"));
 		//

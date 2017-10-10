@@ -491,7 +491,7 @@ function BaseViewMeasureSize(str,maxWidth,fontSize,lineSpace,charSpace){
 	
 	var rect = BaseViewMesuerTextView.getBoundingClientRect();
 	BaseViewMesuerTextView.innerText="";
-	return {w:rect.width>0?(rect.width+1):0,h:rect.height};
+	return {w:rect.width>0?(rect.width+1):0,h:rect.height>0?(rect.height+1):0};
 }
 //一下需要适配
 var  BaseViewOnNeedLayoutIf=null;
@@ -630,6 +630,49 @@ Frame = {
 	postDelayed:postDelayed,
 	measureTextSize:BaseViewMeasureSize,
 	loadJS:loadJS,
-	setLoadJSFinish:setLoadJSFinish
+	setLoadJSFinish:setLoadJSFinish,
+	createHttp:function(){
+		var http={request:{type:"GET",async:"true",cache:"false",headers:{}}};
+		//适配函数
+		http.setUrl=function(url){
+			this.request.url=url;
+		};
+		//适配函数
+		http.setMethod=function(method){
+			this.request.type=method;
+		};
+		//适配函数.需要KEY完全正确
+		http.setHeader=function(key,value){
+			this.request.headers[key]=value;
+		};
+		//适配函数
+		http.setBodyString=function(str){
+			this.request.data=str;
+		};
+		//适配函数 onResponse = function(response,statue,json); response = {statue,headers,string}
+		http.setOnResponse=function(onResponse){
+			this.request.complete=function(XHR, TS){
+				onResponse.call(http,XHR.getAllResponseHeaders(),XHR.status, XHR.responseText);
+			};
+			this.request.error=function(XHR, TS){
+				
+			};
+			this.request.success=function(XHR, TS){
+			
+			};
+		};
+		//适配函数
+		http.doRequest=function(){
+			$.ajax(this.request);
+		};
+		return http;
+	},
+	//string,string
+	saveKeyValue:function(key,value){
+		localStorage.setItem(key,value);
+	},
+	getKeyValue:function(key){
+		return localStorage.getItem(key);
+	}
 };
 })();
