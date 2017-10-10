@@ -612,6 +612,22 @@ var loadJSFinish=null;
 function setLoadJSFinish(fun){
 	loadJSFinish = fun;
 }
+var LStorage=localStorage;
+if(typeof(LStorage)=="undefined"){
+	LStorage={
+		data:{},
+		setItem:function(key,value){
+			LStorage.data[key] = value;
+		},
+		getItem:function(key){
+			var value = LStorage.data[key];
+			if(typeof(value)=="undefined"){
+				return "";
+			}
+			return value;
+		}
+	};
+}
 //适配变量
 Frame = {
 	getFrameVersion:function(){
@@ -669,10 +685,10 @@ Frame = {
 	},
 	//string,string
 	saveKeyValue:function(key,value){
-		localStorage.setItem(key,value);
+		LStorage.setItem(key,value);		
 	},
 	getKeyValue:function(key){
-		return localStorage.getItem(key);
+		return LStorage.getItem(key);		
 	}
 };
 })();
